@@ -201,7 +201,13 @@ def get_timezone_options() -> List[str]:
 def display_checkin_card(checkin: Dict, index: int):
     """Display a single check-in in a nice card format"""
     st.markdown(f"""
-        <div class="checkin-card">
+        <div class="checkin-card" style="
+            background-color: transparent;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            color: black !important;
+        ">
             <h4>Check-in #{index + 1} • {checkin.get('timestamp', 'Just now')}</h4>
             <p><strong>Feelings:</strong> {', '.join(checkin.get('feelings', []))}</p>
             <p><strong>Energy Level:</strong> {checkin.get('energy_value', 0)}/10</p>
@@ -245,7 +251,18 @@ def auth_page():
     """Login/Register page"""
     st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     
-    st.title("🧠 Mood Check-in Tracker")
+    st.title("🧠 MoodIQ")
+    st.markdown(
+        """
+        <div style='font-size:16px; line-height:1.5; margin-top:-10px;'>
+        MoodIQ turns your daily emotional check-ins into meaningful, personalized insights.  
+        Track your feelings, energy, and reflections — then let the system analyze your patterns,  
+        highlight trends, and reveal the emotional shifts you usually miss.  
+        Every entry contributes to a richer understanding of your emotional journey.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     st.markdown("### Welcome! Please login or register to continue")
     
     tab1, tab2 = st.tabs(["Login", "Register"])
@@ -375,8 +392,20 @@ def main_app():
     # Header with user info and logout
     col_header1, col_header2, col_header3 = st.columns([2, 1, 1])
     
+   
     with col_header1:
-        st.title("🧠 Mood Check-in Tracker")
+        st.title("🧠 Mood IQ")
+        st.markdown(
+            """
+            <div style='font-size:16px; line-height:1.5; margin-top:-10px;'>
+            MoodIQ turns your daily emotional check-ins into meaningful, personalized insights.  
+            Track your feelings, energy, and reflections — then let the system analyze your patterns,  
+            highlight trends, and reveal the emotional shifts you usually miss.  
+            Every entry contributes to a richer understanding of your emotional journey.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     
     with col_header2:
         st.metric("User", st.session_state.username)
